@@ -1,0 +1,53 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <form action="" enctype="multipart/form-data" method="post">
+ <p>
+ <label for="">name</label>
+ <input type="text" name="name" class="form-control"
+ value="<?php echo \htmlentities(isset($_POST['name']) ? $_POST['name'] : $passenger->name, ENT_QUOTES, 'UTF-8', false); ?>">
+ <span style="color: red"><?php echo \htmlentities(isset($error['name']) ? $error['name'] : '', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </p>
+ <p>
+ <label for="">train_id</label>
+ <select name="train_id" id="" class="form-control">
+ <option selected hidden value="<?php echo \htmlentities($passenger->train->id, ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($passenger->train->name, ENT_QUOTES, 'UTF-8', false); ?></option>
+ <?php $__currentLoopData = $trains; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $item): $loop = $this->incrementLoopIndices();  ?>
+ <option value="<?php echo \htmlentities($item->id, ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($item->name, ENT_QUOTES, 'UTF-8', false); ?> </option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ <span style="color: red"><?php echo \htmlentities(isset($error['train_id']) ? $error['train_id'] : '', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </p>
+ <p>
+ <label for="">avatar</label>
+ <input type="file" name="avatar" class="form-control" value="<?php echo \htmlentities($passenger->avatar, ENT_QUOTES, 'UTF-8', false); ?>">
+ </p>
+ <p>
+ <label for="">birth_date</label>
+ <input type="date" name="birth_date" class="form-control"
+ value="<?php echo \htmlentities(isset($_POST['birth_date']) ? $_POST['birth_date'] : $passenger->birth_date, ENT_QUOTES, 'UTF-8', false); ?>">
+ <span style="color: red"><?php echo \htmlentities(isset($error['birth_date']) ? $error['birth_date'] : '', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </p>
+ <p>
+ <label for="">gender</label>
+ <select name="gender" id="" class="form-control">
+ <option selected hidden value="<?php echo \htmlentities($passenger->gender, ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities(gender($passenger->gender), ENT_QUOTES, 'UTF-8', false); ?></option>
+ <option value="0">Nam</option>
+ <option value="1">Nu</option>
+ <option value="2">Khac</option>
+ </select>
+ <span style="color: red"><?php echo \htmlentities(isset($error['gender']) ? $error['gender'] : '', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </p>
+ <p>
+ <label for="">phone</label>
+ <input type="number" name="phone" class="form-control"
+ value="<?php echo \htmlentities(isset($_POST['phone']) ? $_POST['phone'] : $passenger->phone, ENT_QUOTES, 'UTF-8', false); ?>">
+ <span style="color: red"><?php echo \htmlentities(isset($error['phone']) ? $error['phone'] : '', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </p>
+ <p>
+ <button type="submit" class="btn btn-success">Update</button>
+ </p>
+ </form>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('frame'); } ?>
